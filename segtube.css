@@ -2,6 +2,20 @@ body {
     --fg-color: #222;
     --bg-color: #ddd;
     background-color: var(--bg-color);
+    transition: color 0.3s, background-color 0.3s;
+}
+
+body[data-theme="dark"] {
+    --bg-color: #222;
+    --fg-color: #ddd;
+}
+
+[data-theme="dark"] * {
+    --bg-color: #222;
+    --fg-color: #ddd;
+    --bg-color-hover: #449;
+    --bg-color-active: #aae;
+    --bg-color-stress: #494;
 }
 
 .seg_container {
