@@ -2,7 +2,7 @@ body {
     --fg-color: #222;
     --bg-color: #ddd;
     background-color: var(--bg-color);
-    transition: color 0.3s, background-color 0.3s;
+    /* transition: color 0.3s, background-color 0.3s; */
 }
 
 body[data-theme="dark"] {
@@ -34,7 +34,6 @@ body[data-theme="dark"] {
     left: -10px;
     width: 124px;
     height: 228px;
-    /* background-color: lightpink; */
 }
 
 .seg {
@@ -73,9 +72,48 @@ body[data-theme="dark"] {
 }
 
 .seg.hide {
-    opacity: 0.1;
+    opacity: 0.05;
 }
 
 .seg:hover {
     cursor: pointer;
+}
+
+/* seg14.css */
+
+.seg.short {
+    width: 28px;
+}
+
+.seg.pllg,
+.seg.pllgi {
+    width: 39px;
+    height: 28px;
+}
+
+.seg.decap {
+    width: 45px;
+    transform-origin: 10px 10px;
+    rotate: 90deg;
+}
+
+.seg.pllg::before,
+.seg.pllgi::before,
+.seg.decap::after,
+.seg.pllg::after,
+.seg.pllgi::after {
+    content: none;
+    border: none;
+}
+
+.seg.decap::before {
+    border-left: 15px solid var(--fg-color);
+}
+
+.seg.pllg {
+    transform: skewY(57deg);
+}
+
+.seg.pllgi {
+    transform: skewY(-57deg);
 }

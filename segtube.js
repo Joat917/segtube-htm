@@ -52,6 +52,7 @@ const segtubeData = {
     "R": [0, 0, 0, 1, 0, 0, 1],
     "U": [1, 1, 1, 1, 1, 0, 0],
     "Y": [1, 1, 1, 0, 1, 0, 1],
+    " ": [0, 0, 0, 0, 0, 0, 0],
     "_": [0, 0, 1, 0, 0, 0, 0],
     "-": [0, 0, 0, 0, 0, 0, 1],
     "=": [0, 0, 1, 0, 0, 0, 1],
@@ -139,24 +140,25 @@ const get_digtube = (() => {
     return get_digtube;
 })();
 (() => {
-    let i = Math.floor(Math.random()*1000);
+    let i = Math.floor(Math.random() * 1000);
     for (const char of 'Hello_\nthere1') {
         if (char === '\n') { document.body.appendChild(document.createElement("br")); continue; }
         get_digtube(i++).set_stat(char);
     }
 })();
 (() => {
-    const t2s=()=>{
-        const now=new Date();
-        return `${now.getHours().toString().padStart(2, '0')}_${now.getMinutes().toString().padStart(2, '0')}_${now.getSeconds().toString().padStart(2, '0')}`
+    const t2s = () => {
+        const now = new Date();
+        const sep = now.getMilliseconds() >= 500 ? ' ' : '_';
+        return now.getHours().toString().padStart(2, '0') + sep + now.getMinutes().toString().padStart(2, '0') + sep + now.getSeconds().toString().padStart(2, '0');
     }
-    let old_display='';
-    const ref=()=>{
-        const new_display=t2s();
-        if(old_display!==new_display){
-            old_display=new_display;
-            for(let i=0;i<8;i++){
-                get_digtube('timedisplay'+i).set_stat(new_display[i]);
+    let old_display = '';
+    const ref = () => {
+        const new_display = t2s();
+        if (old_display !== new_display) {
+            old_display = new_display;
+            for (let i = 0; i < 8; i++) {
+                get_digtube('timedisplay' + i).set_stat(new_display[i]);
             }
         }
     }
@@ -164,8 +166,8 @@ const get_digtube = (() => {
     document.body.appendChild(document.createElement("br"));
     ref();
 })();
-(()=>{
-    let se=document.createElement("span");
+(() => {
+    let se = document.createElement("span");
     se.classList.add("dark_switch");
     document.body.appendChild(se);
 })();
