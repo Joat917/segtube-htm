@@ -117,3 +117,14 @@ body[data-theme="dark"] {
 .seg.pllgi {
     transform: skewY(-57deg);
 }
+
+/* arr58.css */
+
+.array_cell {
+    display: inline-block;
+    background-color: var(--fg-color);
+}
+
+.array_cell.hide {
+    opacity: 0;
+}

@@ -1,18 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Main Page of Segtube HTM Demo</title>
     <link rel="stylesheet" href="segtube.css">
 </head>
+
 <body>
     <noscript>
-        Javascript is needed for this to function. Anyway, <a href="./segtube.htm">CLICK HERE</a>!!!!!!
+        Where's my script?
     </noscript>
-    <a href="./segtube.htm">CLICK HERE</a>!!!!!!
+    <div class="container"></div>
+    <div class="container"></div>
+    <div class="container"></div>
+    <script src="segtube.js"></script>
+    <script src="seg14.js"></script>
     <script>
-        document.location="./segtube.htm";
+        const containers = document.querySelectorAll('.container');
+        dark_theme_initializer();
+        let i = 70;
+        for (const c of 'STYLE-1') {
+            get_digtube(i++, containers[0]).set_stat(c);
+        }
+        i = 140;
+        for (const c of 'STYLE-2') {
+            get_digtube_14(i++, containers[1]).set_stat(c);
+        }
+        const dat58 = [
+            '0110011111010001010000111100111',
+            '10000001000100010100001000000001',
+            '01100001000010100100001110000001',
+            '0001000100000100010000100000011',
+            '00010001000001000100001000000001',
+            '11100001000001000111101111010001',
+            '0000000000000000000000000000111',
+        ];
+        const dat58Width = 32;
+        const dat58Size = 32;
+        const nr = document.createElement('div');
+        nr.style.display = 'inline-block';
+        nr.style.width = (dat58Size * dat58Width) + 'px';
+        nr.style.height = (dat58Size * 7) + 'px';
+        nr.style.position = 'relative';
+        nr.style.marginTop = '20px';
+        containers[2].appendChild(nr);
+        for (let h = 0; h < 7; h++) {
+            const mr = document.createElement('div');
+            mr.style.position = 'absolute'
+            mr.style.left = 0;
+            mr.style.top = (h * dat58Size) + 'px';
+            nr.appendChild(mr);
+            for (let w = 0; w < dat58Width; w++) {
+                const e = document.createElement('div');
+                e.style.display = 'inline-block';
+                e.style.padding = 0;
+                e.style.margin = 0;
+                e.style.width = dat58Size + 'px';
+                e.style.height = dat58Size + 'px';
+                e.style.backgroundColor = 'var(--fg-color)';
+                if (dat58[h][w] !== '1') {
+                    e.style.opacity = 0;
+                } else {
+                    e.style.cursor = 'pointer';
+                    e.addEventListener("click", () => document.location = './arr58.htm');
+                }
+                mr.appendChild(e);
+            }
+        }
+        for (const ele of containers[0].querySelectorAll('.seg')) {
+            ele.addEventListener("click", () => document.location = './segtube.htm');
+        }
+        for (const ele of containers[1].querySelectorAll('.seg')) {
+            ele.addEventListener("click", () => document.location = './seg14.htm');
+        }
     </script>
 </body>
+
 </html>

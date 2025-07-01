@@ -1,5 +1,4 @@
-(() => { console.log("JS loading...") })();
-setTimeout(() => {
+var dark_theme_initializer = () => setTimeout(() => {
     const ele_body = document.querySelector('body');
     for (const ele_dark_switch of document.querySelectorAll('.dark_switch')) {
         ele_dark_switch.addEventListener('click', () => {
@@ -139,14 +138,14 @@ const get_digtube = (() => {
     };
     return get_digtube;
 })();
-(() => {
+const segtube_test_initializer_1 = () => {
     let i = Math.floor(Math.random() * 1000);
     for (const char of 'Hello_\nthere1') {
         if (char === '\n') { document.body.appendChild(document.createElement("br")); continue; }
         get_digtube(i++).set_stat(char);
     }
-})();
-(() => {
+};
+const segtube_test_initializer_2 = () => {
     const t2s = () => {
         const now = new Date();
         const sep = now.getMilliseconds() >= 500 ? ' ' : '_';
@@ -165,10 +164,10 @@ const get_digtube = (() => {
     setInterval(ref, 20);
     document.body.appendChild(document.createElement("br"));
     ref();
-})();
-(() => {
+};
+const segtube_test_initializer_3 = () => {
     let se = document.createElement("span");
     se.classList.add("dark_switch");
     document.body.appendChild(se);
-})();
-(() => { console.log("JS loaded!!!") })()
+    dark_theme_initializer();
+}

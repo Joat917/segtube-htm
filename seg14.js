@@ -1,5 +1,4 @@
-(() => { console.log("JS loading...") })();
-setTimeout(() => {
+var dark_theme_initializer = () => setTimeout(() => {
     const ele_body = document.querySelector('body');
     for (const ele_dark_switch of document.querySelectorAll('.dark_switch')) {
         ele_dark_switch.addEventListener('click', () => {
@@ -25,7 +24,7 @@ setTimeout(() => {
         }
     }
 }, 2);
-const segtubeData = {
+const seg14Data = {
     "0": [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0],
     "1": [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "2": [1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0],
@@ -57,7 +56,7 @@ const segtubeData = {
     "S": [0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0],
     "T": [0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1],
     "U": [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    "V": [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0],
+    "V": [0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
     "W": [1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0],
     "X": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0],
     "Y": [0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0],
@@ -70,6 +69,8 @@ const segtubeData = {
     "=": [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0],
     "(": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
     ")": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+    "<": [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0],
+    ">": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0],
     "!": [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
     "*": [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1],
     "^": [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
@@ -93,14 +94,21 @@ const segtubeData = {
     "r": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
     "t": [0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0],
     "u": [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "v": [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
     "w": [0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0],
+    "y": [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0],
     "z": [0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0],
     "'": [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "\"": [1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    "[": [0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+    "]": [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "{": [0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0],
-    "}": [0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0]
+    "}": [0, 0, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0],
+    "%": [0, 1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0],
+    ":": [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+    ";": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1]
 }
-const get_digtube = (() => {
+const get_digtube_14 = (() => {
     const existing_tubes = new Object();
     const get_digtube = (tubeID, parent) => {
         const result = existing_tubes[tubeID];
@@ -178,12 +186,12 @@ const get_digtube = (() => {
         set_stat(stat) {
             if (stat[6] === undefined) {
                 let old_stat = stat;
-                stat = segtubeData[('' + stat)];
+                stat = seg14Data[('' + stat)];
                 if (stat === undefined) {
-                    stat = segtubeData[('' + old_stat).toUpperCase()];
+                    stat = seg14Data[('' + old_stat).toUpperCase()];
                 }
             }
-            if (stat === undefined || stat[6] === undefined) { stat = segtubeData['_'] };
+            if (stat === undefined || stat[6] === undefined) { stat = seg14Data['_'] };
             for (let i = 0; i < 14; i++) {
                 if (stat[i]) {
                     this.ele_tubes[i].classList.remove('hide');
@@ -196,23 +204,23 @@ const get_digtube = (() => {
     };
     return get_digtube;
 })();
-(() => {
+const seg14_test_initializer_1 = (() => {
     let i = 1000;
     for (const char of 'Hello,\nWorld!') {
         if (char === '\n') { document.body.appendChild(document.createElement("br")); continue; }
-        get_digtube(i++).set_stat(char);
+        get_digtube_14(i++).set_stat(char);
     }
-    document.addEventListener('keydown', (ev)=>{
-        if(ev.key.length===1){
-            if(i>=1012){i=1000};
-            get_digtube(i++).set_stat(ev.key);
-        }else if(ev.key.toLowerCase()==='backspace'){
-            if(i<=1000){i=1012};
-            get_digtube(--i).set_stat(' ');
+    document.addEventListener('keydown', (ev) => {
+        if (ev.key.length === 1) {
+            if (i >= 1012) { i = 1000 };
+            get_digtube_14(i++).set_stat(ev.key);
+        } else if (ev.key.toLowerCase() === 'backspace') {
+            if (i <= 1000) { i = 1012 };
+            get_digtube_14(--i).set_stat(' ');
         }
     })
-})();
-(() => {
+});
+const seg14_test_initializer_2 = (() => {
     const t2s = () => {
         const now = new Date();
         const sep = now.getMilliseconds() >= 500 ? ' ' : '_';
@@ -224,17 +232,17 @@ const get_digtube = (() => {
         if (old_display !== new_display) {
             old_display = new_display;
             for (let i = 0; i < 8; i++) {
-                get_digtube('timedisplay' + i).set_stat(new_display[i]);
+                get_digtube_14('timedisplay' + i).set_stat(new_display[i]);
             }
         }
     }
     setInterval(ref, 20);
     document.body.appendChild(document.createElement("br"));
     ref();
-})();
-(() => {
+});
+const seg14_test_initializer_3 = (() => {
     let se = document.createElement("span");
     se.classList.add("dark_switch");
     document.body.appendChild(se);
-})();
-(() => { console.log("JS loaded!!!") })()
+    dark_theme_initializer();
+});
